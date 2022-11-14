@@ -57,49 +57,33 @@
 })(); // End of use strict
 
 
-// Not Working 
-(function() {
-  "use strict"; // Start of use strict
-  
-  // const btns = document.querySelectorAll('.share');
-  
-  // // Share must be triggered by "user activation"
-  // btns.forEach(btn=>{
-    
-  //   btn.addEventListener('click', async () => {
+// Not Working carousel data-bs-interval changes alright but doesnt seem to work
+window.addEventListener('load', function(){
 
-  //     const file = $('youtubeimg').attr('src');
+  // const carousel = document.querySelector('.carousel');
+  // const videos = carousel.querySelectorAll('video');
+
+  // carousel.setAttribute('data-bs-interval',5000);
   
-  //     // feature detecting navigator.canShare() also implies
-  //     // the same for the navigator.share()
-  //     if (!navigator.canShare) {
-  //       alert("Your browser doesn't support the Web Share API.");
-  //       return;
+  // videos.forEach(video=>{
+
+  //   video.addEventListener('play', (event) => {
+      
+  //     if (event.type == 'play'){
+  //       let duration = (parseInt(video.duration)+1)*1000;
+  //       carousel.setAttribute('data-bs-interval', duration);
+  //       // console.log(parseInt(duration));
+  //     }else{
+  //       carousel.setAttribute('data-interval',5000);
   //     }
-  
-  //     if (navigator.canShare({ files })) {
-  //       try {
-  //         await navigator.share({
-  //           file,
-  //           title: 'Discovery 2022',
-  //           text: 'Save the date. Share, lets meet and chill.'
-  //         })
-  //         alert('Shared!');
-  //       } catch (error) {
-  //         alert(`Error: ${error.message}`);
-  //       }
-  //     } else {
-  //       alert(`Your system doesn't support sharing these files.`);
-  //     }
-  
+ 
   //   });
-  // })
 
-})();
+})
 
 
 function shareEvent(modalID, name){
-  console.log(modalID);
+
   let flyer = document.querySelector(modalID).querySelector('img');
   
   // feature detecting navigator.canShare() also implies
@@ -108,20 +92,6 @@ function shareEvent(modalID, name){
     alert("Your browser doesn't support the Web Share API.");
     return;
   }else{
-    // if (navigator.canShare({ files })) {
-    //   try {
-    //     await navigator.share({
-    //       url: flyer.getAttribute('src'),
-    //       title: 'Discovery 2022',
-    //       text: 'Save the date. Share, lets meet and chill.'
-    //     })
-    //     alert('Shared!');
-    //   } catch (error) {
-    //     alert(`Error: ${error.message}`);
-    //   }
-    // } else {
-    //   alert(`Your system doesn't support sharing these files.`);
-    // }
 
     fetch(flyer.getAttribute('src'))
       .then(function(response) {
@@ -143,5 +113,6 @@ function shareEvent(modalID, name){
 
   }
 
-  return true;
+  return true;  // return true to allow default anchor behaviour
 }
+
